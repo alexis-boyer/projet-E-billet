@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Bienue - projet E-Billet</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+    body, h1, h2, h3, h4, h5, h6 {
+        font-family: "Lato", sans-serif
+    }
+
+    .w3-bar, h1, button {
+        font-family: "Montserrat", sans-serif
+    }
+
+    .card-img-text {
+        font-size: 200px
+    }
+
+    input[type=button], input[type=submit], input[type=reset]{
+        background-color: #f44336;
+        border: none;
+        color: white;
+        padding: 15px 80px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        text-transform: uppercase;
+        font-size: 13px;
+        -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+        box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+        -webkit-border-radius: 5px 5px 5px 5px;
+        border-radius: 5px 5px 5px 5px;
+        margin: 5px 20px 40px 20px;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .button{
+        background-color: #f44336;
+        border: none;
+        color: white;
+        padding: 5px 5px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        text-transform: uppercase;
+        font-size: 13px;
+        -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+        box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+        -webkit-border-radius: 2px 2px 2px 2px;
+        border-radius: 2px 2px 2px 2px;
+        margin: 5px 20px 5px 20px;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+        input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, .button:hover {
+            background-color: #ffdddd;
+        }
+
+        input[type=button]:active, input[type=submit]:active, input[type=reset]:active, .button:active {
+            -moz-transform: scale(0.95);
+            -webkit-transform: scale(0.95);
+            -o-transform: scale(0.95);
+            -ms-transform: scale(0.95);
+            transform: scale(0.95);
+        }
+
+    input[type=text], input[type=password], select {
+        background-color: #f6f6f6;
+        border: none;
+        color: #0d0d0d;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 5px;
+        width: 85%;
+        border: 2px solid #f6f6f6;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        -webkit-border-radius: 5px 5px 5px 5px;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    ul {
+        color:##f6f6f6;
+        text-align: center;
+        font-size: 16px;
+        margin: 5px;
+        width: 85%;
+    }
+
+    .liste{
+        text-color:##f6f6f6;
+        color:##f6f6f6;
+    }
+</style>
+
+
+<body>
+<!-- Header -->
+<header class="w3-container w3-red w3-center" style="padding:128px 16px">
+    <h1 class="w3-margin w3-jumbo">APPLICATION E-BILLET</h1>
+    <p class="w3-xlarge">billet</p>
+</header>
+
+<div class="w3-row-padding w3-padding-64 w3-container">
+    <div class="w3-content">
+        <div class="w3-container">
+            <form>
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="localisation">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="type">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="date">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-5">
+                        <select name="artistes" class="form-control" id="artistes" style="background-color: #f6f6f6;">
+                            <option value="exemple">artiste exemple1</option>
+                            <option value="exemple">artiste exemple2</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <p class="button add">+</p>
+                    </div>
+                    <div class="col-5">
+                        <ul id="artistes-display" class="">
+                            <li class="w3-text-grey">artiste 1 <p class="button suppr">X</p></li>
+                            <li class="w3-text-grey">artiste 2 <p class="button suppr">X</p></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="w3-center">
+                    <input type="submit" class="" value="ajouter">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+    <div class="w3-content">
+        <div class="w3-container">
+            <form>
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="localisation">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="type">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="date">
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" class="fadeIn fourth" value="recherche">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="w3-container w3-padding-16">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" class="w3-text-grey">Localisation</th>
+                    <th scope="col" class="w3-text-grey">Type</th>
+                    <th scope="col" class="w3-text-grey">Date</th>
+                    <th scope="col" class="w3-text-grey">Artistes</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="w3-text-grey">
+                        <td>Tours</td>
+                        <td>Concert</td>
+                        <td>01/04/2077</td>
+                        <td>Hakim AMRAOUI, Adma BAYO et Alexis BOYER</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+    <div class="w3-xlarge w3-padding-32">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+
+        $('.suppr').click(function() {
+            $(this).parent().remove();
+            return false;
+        });
+
+        $('.add').click(function() {
+            $("#artistes-display").append('<li class="w3-text-grey">'+$("#artistes option:selected").text()+' <p class="button suppr">X</p></li>');
+            $('.suppr').click(function() {
+                $(this).parent().remove();
+                return false;
+            });
+            return false;
+        });
+
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
