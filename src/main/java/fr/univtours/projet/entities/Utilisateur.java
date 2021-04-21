@@ -1,22 +1,23 @@
 package fr.univtours.projet.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 public class Utilisateur implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idUtilisateur;
     private String prenom;
     private String nom;
     private String pseudo;
     private String motDePasse;
     private String role;
+
+    @OneToMany(mappedBy = "utilisateur")
+    private Collection<Tiquet> tiquets;
 
     public Utilisateur() {
 
