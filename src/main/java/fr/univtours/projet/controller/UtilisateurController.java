@@ -12,8 +12,6 @@ import java.util.List;
 public class UtilisateurController {
 
 
-    @Autowired
-    UtilisateurJpaRepository utilisateurRep;
 
 
 
