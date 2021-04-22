@@ -1,36 +1,36 @@
 package fr.univtours.projet.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Tiquet {
+public class Ticket implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue
+    private int idTiquet;
 
-    @ManyToOne
+    @ManyToOne (cascade=CascadeType.PERSIST)
     @JoinColumn(name = "idEvenement")
     private Evenement evenement;
-    @ManyToOne
+    @ManyToOne (cascade=CascadeType.PERSIST)
     @JoinColumn(name = "idUtilisateur")
     private Utilisateur utilisateur;
 
-    public Tiquet() {
+    public Ticket() {
     }
 
-    public Tiquet(int id, Evenement idEvenement, Utilisateur utilisateur) {
-        this.id = id;
+    public Ticket(Evenement idEvenement, Utilisateur utilisateur) {
         this.evenement = idEvenement;
         this.utilisateur = utilisateur;
     }
 
-    public int getId() {
-        return id;
+    public int getIdTiquet() {
+        return idTiquet;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdTiquet(int id) {
+        this.idTiquet = id;
     }
 
     public Evenement getEvenement() {

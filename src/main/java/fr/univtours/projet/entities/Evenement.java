@@ -1,10 +1,13 @@
 package fr.univtours.projet.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class Evenement {
+public class Evenement implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,19 +18,21 @@ public class Evenement {
     private String emplacement;
     private String type;
     private String date;
-    private String prix;
+    private double prix;
 
-    @OneToMany(mappedBy = "evenement")
-    private Collection<Tiquet> tiquets;
+    @OneToMany(mappedBy = "evenement",fetch=FetchType.LAZY)
+    private Set<Ticket> tickets = new HashSet<>();
 
-    @ManyToMany(mappedBy = "evenements")
-    private Collection<Artiste> artistes;
+    @ManyToMany
+    @JoinTable( name = "Participe",
+            joinColumns = @JoinColumn( name = "idEvenemt" ),
+            inverseJoinColumns = @JoinColumn( name = "idArtiste" ) )
+    private Set<Artiste> artistes = new HashSet<>();
 
     public Evenement() {
     }
 
-    public Evenement(int id, int places, String emplacement, String type, String date, String prix) {
-        this.idEvenement = id;
+    public Evenement(int places, String emplacement, String type, String date, double prix) {
         this.places = places;
         this.emplacement = emplacement;
         this.type = type;
@@ -75,11 +80,45 @@ public class Evenement {
         this.date = date;
     }
 
-    public String getPrix() {
+    public double getPrix() {
         return prix;
     }
 
-    public void setPrix(String prix) {
+    public void setPrix(double prix) {
         this.prix = prix;
+    }
+
+    public Set<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public Set<Artiste> getArtistes() {
+        return artistes;
+    }
+
+    public void setArtistes(Set<Artiste> artistes) {
+        this.artistes = artistes;
+    }
+
+    public void addArtiste(Artiste a) {
+        artistes.add(a);
+    }
+
+    @Override
+    public String toString() {
+        return "Evenement{" +
+                "idEvenement=" + idEvenement +
+                ", places=" + places +
+                ", emplacement='" + emplacement + '\'' +
+                ", type='" + type + '\'' +
+                ", date='" + date + '\'' +
+                ", prix=" + prix +
+                ", tiquets=" + tickets +
+                ", artistes=" + artistes +
+                '}';
     }
 }

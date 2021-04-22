@@ -3,12 +3,14 @@ package fr.univtours.projet.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Utilisateur implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int idUtilisateur;
     private String prenom;
     private String nom;
@@ -16,15 +18,14 @@ public class Utilisateur implements Serializable {
     private String motDePasse;
     private String role;
 
-    @OneToMany(mappedBy = "utilisateur")
-    private Collection<Tiquet> tiquets;
+    @OneToMany(mappedBy = "utilisateur", fetch=FetchType.LAZY)
+    private Set<Ticket> tickets = new HashSet<>();
 
     public Utilisateur() {
 
     }
 
-    public Utilisateur(int idUtilisateur, String prenom, String nom, String pseudo, String motDePasse, String role) {
-        this.idUtilisateur = idUtilisateur;
+    public Utilisateur(String prenom, String nom, String pseudo, String motDePasse, String role) {
         this.prenom = prenom;
         this.nom = nom;
         this.pseudo = pseudo;
@@ -78,5 +79,13 @@ public class Utilisateur implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Set<Ticket> getTiquets() {
+        return tickets;
+    }
+
+    public void setTiquets(Set<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }
