@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <title>Connection - projet E-Billet</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -334,7 +334,7 @@
                 </div>
 
                 <!-- Login Form -->
-                <form>
+                <form th:action="@{/admin/login}" th:object="${loginForm}" method="post">
                     <input type="text" id="login_auth" class="fadeIn second" name="login" placeholder="pseudo">
                     <input type="password" id="password_auth" class="fadeIn third" name="password" placeholder="mot de passe">
                     <input type="submit" class="fadeIn fourth" value="connection">

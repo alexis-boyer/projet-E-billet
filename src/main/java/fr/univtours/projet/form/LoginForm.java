@@ -2,24 +2,24 @@ package fr.univtours.projet.form;
 
 public class LoginForm {
 
-    private String pseudo;
-    private String motDePasse;
+    private String login;
+    private String password;
 
     public LoginForm() {super();}
 
-    public String getPseudo() {
-        return pseudo;
+    public String getLogin() {
+        return login;
     }
 
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    public String getMotDePasse() {
-        return motDePasse;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

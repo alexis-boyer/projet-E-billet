@@ -18,6 +18,18 @@ public class InitEbilletDatas {
     Artiste a1;
     Artiste a2;
 
+    // Ticket
+
+    // Utilisateur
+    Utilisateur u1;
+    Utilisateur u2;
+    Utilisateur u3;
+
+
+    // Evenement
+
+
+
     protected ArrayList<Artiste> getArtistesList() {
 
         a1 = new Artiste("Jul");
@@ -36,6 +48,13 @@ public class InitEbilletDatas {
 
     }
     protected ArrayList<Utilisateur> getUtilisateursList(){
+
+        u1 = new Utilisateur("Alexis", "Boyer", "killerDu79", "pasouflemec","Client");
+        u2 = new Utilisateur("Zinedine", "Zidane", "Meilleur", "Joueur", "Admin");
+
+        utilisateurs.add(u1);
+        utilisateurs.add(u2);
+
         return utilisateurs;
     }
     protected ArrayList<Evenement> getEvenementsList(){
