@@ -1,26 +1,25 @@
 package fr.univtours.projet;
 
-import fr.univtours.projet.dao.IArtiste;
-import fr.univtours.projet.dao.IEvenement;
-import fr.univtours.projet.entities.Artiste;
-import fr.univtours.projet.entities.Evenement;
+import fr.univtours.projet.service.InitEbillet;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @SpringBootApplication
-public class ProjetApplication {
+public class ProjetApplication implements CommandLineRunner {
 
+
+    @Autowired
+    InitEbillet initEbillet;
+
+    @Autowired
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(ProjetApplication.class, args);
+
+        SpringApplication.run(ProjetApplication.class, args);
+
+        /*ApplicationContext ctx = SpringApplication.run(ProjetApplication.class, args);
 
         IEvenement evenementDAO = ctx.getBean(IEvenement.class);
         IArtiste artisteDAO = ctx.getBean(IArtiste.class);
@@ -30,9 +29,9 @@ public class ProjetApplication {
         artisteDAO.save(jul);
         artisteDAO.save(mj);
 
-		/*
+		*//*
 		Affichage des artistes
-		 */
+		 *//*
 
         System.out.println("**** Find all ****");
         List<Artiste> LA = artisteDAO.findAll();
@@ -66,14 +65,18 @@ public class ProjetApplication {
         for (Artiste a: event0.getArtistes()) {
             System.out.println(a.toString());
         }
+*/
 
 
 
     }
 
-    @GetMapping("/hello")
-    public String sayHello(@RequestParam(value = "myName", defaultValue = "World") String name) {
-        return String.format("Hello %s!", name);
-    }
 
+    @Override
+    public void run(String... args) throws Exception {
+        initEbillet.initArtistes();
+        initEbillet.initEvenements();
+        initEbillet.initTickets();
+        initEbillet.initUtilisateurs();
+    }
 }

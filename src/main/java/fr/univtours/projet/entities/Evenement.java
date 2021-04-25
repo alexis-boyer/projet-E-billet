@@ -116,9 +116,7 @@ public class Evenement implements Serializable {
                 ", emplacement='" + emplacement + '\'' +
                 ", type='" + type + '\'' +
                 ", date='" + date + '\'' +
-                ", prix=" + prix +
-                ", tiquets=" + tickets +
-                ", artistes=" + artistes +
+                ", prix=" + prix + "€" +
                 '}';
     }
 }
