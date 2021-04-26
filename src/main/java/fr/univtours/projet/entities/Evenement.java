@@ -10,7 +10,7 @@ import java.util.Set;
 public class Evenement implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEvenement;
 
 

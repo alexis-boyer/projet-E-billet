@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<title>Ajouter un evenement - projet E-Billet</title>
+<title>Modifier un evenement - projet E-Billet</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -117,30 +117,34 @@
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
     <h1 class="w3-margin w3-jumbo">APPLICATION E-BILLET</h1>
-    <p class="w3-xlarge">Ajouter un billet</p>
+    <p class="w3-xlarge">Modifier un billet</p>
 </header>
 
 <div class="w3-row-padding w3-padding-64 w3-container">
     <div class="w3-content">
         <div class="w3-container">
-            <form th:action="@{/admin/addEvent}" th:object="${EvenementForm}" method="post">
+            <form th:action="@{/admin/modifyEvent}" th:object="${EvenementForm}" method="post">
                 <div class="form-row">
                     <div class="col">
-                        <input type="text" name="emplacement" class="form-control" placeholder="localisation">
+                        <input type="text" name="emplacement" class="form-control" placeholder="localisation"
+                               th:value="${eventToModify.emplacement}" required>
                     </div>
                     <div class="col">
-                        <input type="text" name="type" class="form-control" placeholder="type">
+                        <input type="text" name="type" class="form-control" placeholder="type"
+                               th:value="${eventToModify.type}" required>
                     </div>
                     <div class="col">
-                        <input type="text" name="date" class="form-control" placeholder="date">
+                        <input type="text" name="date" class="form-control" placeholder="date"
+                               th:value="${eventToModify.date}">
                     </div>
+                    <input type="hidden" name="idEvenement" th:value="${eventToModify.idEvenement}">
+
                 </div>
                 <div class="form-row">
                     <div class="col-5">
                         <select name="artistes" class="form-control" id="artistes" style="background-color: #f6f6f6;">
-                            <div th:each="artiste:${ArtisteList}">
-                                <option th:value="${artiste.nom}" th:text="${artiste.nom}"> </option>
-                            </div>
+                            <option value="exemple">artiste exemple1</option>
+                            <option value="exemple">artiste exemple2</option>
                         </select>
                     </div>
                     <div class="col">
@@ -148,12 +152,14 @@
                     </div>
                     <div class="col-5">
                         <ul id="artistes-display" class="">
+                            <li class="w3-text-grey">artiste 1 <p class="button suppr">X</p></li>
+                            <li class="w3-text-grey">artiste 2 <p class="button suppr">X</p></li>
                         </ul>
                     </div>
 
                 </div>
                 <div class="w3-center">
-                    <input type="submit" class="" value="ajouter">
+                    <input type="submit" class="" value="Modifier">
                 </div>
             </form>
         </div>
@@ -198,8 +204,10 @@
                         <td th:text="${event.type}"></td>
                         <td th:text="${event.date}"></td>
                         <td th:text="${event.artistes}"></td>
-                        <td><a class="modifier" th:href="@{/admin/modifyEventForm(ref=${event.idEvenement})}">Modifier</a></td>
-                        <td><a class="supprimer" th:href="@{/admin/deleteEvent(ref=${event.idEvenement})}">Supprimer</a></td>
+                        <td><a class="modifier" th:href="@{/admin/modifyEvent(ref=${event.idEvenement})}">Modifier</a>
+                        </td>
+                        <td><a class="supprimer" th:href="@{/admin/deleteEvent(ref=${event.idEvenement})}">Supprimer</a>
+                        </td>
                     </tr>
                 </div>
                 </tbody>

@@ -5,6 +5,7 @@ import fr.univtours.projet.entities.Evenement;
 import fr.univtours.projet.entities.Ticket;
 import fr.univtours.projet.entities.Utilisateur;
 
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +20,7 @@ public class InitEbilletDatas {
     // Artiste
     Artiste a1;
     Artiste a2;
-    Artiste adama = new Artiste("Yoba");
+    Artiste adama = new Artiste("Adama AKA Yoba");
     Artiste alexis = new Artiste("Alexis AKA KillerDu79");
 
     // Ticket
@@ -57,9 +58,11 @@ public class InitEbilletDatas {
 
         u1 = new Utilisateur("Alexis", "Boyer", "killerDu79", "pasouflemec","Client");
         u2 = new Utilisateur("Zinedine", "Zidane", "Meilleur", "Joueur", "Admin");
+        u3 = new Utilisateur("admin", "admin", "admin", "admin", "Admin");
 
         utilisateurs.add(u1);
         utilisateurs.add(u2);
+        utilisateurs.add(u3);
 
         return utilisateurs;
     }

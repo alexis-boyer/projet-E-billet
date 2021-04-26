@@ -1,6 +1,10 @@
 package fr.univtours.projet.controller;
 
+import fr.univtours.projet.dao.ArtisteJpaRepository;
+import fr.univtours.projet.dao.EvenementJpaRepository;
 import fr.univtours.projet.dao.UtilisateurJpaRepository;
+import fr.univtours.projet.entities.Artiste;
+import fr.univtours.projet.entities.Evenement;
 import fr.univtours.projet.entities.Utilisateur;
 import fr.univtours.projet.form.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +22,12 @@ public class ConnexionController {
     @Autowired
     UtilisateurJpaRepository utilisateurRep;
 
+    @Autowired
+    EvenementJpaRepository evenementRep;
+
+    @Autowired
+    ArtisteJpaRepository artisteRep;
+
     @RequestMapping(value = {"/login", "/admin"}, method = RequestMethod.GET)
     public String afficherPageDeConnexion() {
         return "connexion";
@@ -26,13 +36,18 @@ public class ConnexionController {
     @RequestMapping(value = "/admin/login", method = RequestMethod.POST)
     public String login(@ModelAttribute(name = "loginForm") LoginForm loginForm, Model model) {
 
-        List<Utilisateur> list = utilisateurRep.findAll();
+        List<Utilisateur> UtilisateurList = utilisateurRep.findAll();
 
         String login = loginForm.getLogin();
         String motDePasse = loginForm.getPassword();
 
-        for (Utilisateur u : list) {
+        for (Utilisateur u : UtilisateurList) {
             if(u.getPseudo().equals(login) && u.getMotDePasse().equals(motDePasse)) {
+                List<Artiste> artisteList = artisteRep.findAll();
+                model.addAttribute("ArtisteList", artisteList);
+
+                List<Evenement> evenementList = evenementRep.findAll();
+                model.addAttribute("EventList", evenementList);
 
                 return "AjoutBillet";
 
