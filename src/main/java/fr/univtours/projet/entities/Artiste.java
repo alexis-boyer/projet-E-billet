@@ -16,7 +16,7 @@ public class Artiste implements Serializable {
 
     private String nom;
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable( name = "Participe",
             joinColumns = @JoinColumn( name = "idArtiste" ),
             inverseJoinColumns = @JoinColumn( name = "idEvenement" ) )
@@ -59,9 +59,6 @@ public class Artiste implements Serializable {
 
     @Override
     public String toString() {
-        return "Artiste{" +
-                "idArtiste=" + idArtiste +
-                ", nom='" + nom + '\'' +
-                '}';
+        return nom;
     }
 }

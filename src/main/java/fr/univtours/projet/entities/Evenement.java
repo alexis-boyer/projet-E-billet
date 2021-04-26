@@ -23,9 +23,9 @@ public class Evenement implements Serializable {
     @OneToMany(mappedBy = "evenement",fetch=FetchType.LAZY)
     private Set<Ticket> tickets = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable( name = "Participe",
-            joinColumns = @JoinColumn( name = "idEvenemt" ),
+            joinColumns = @JoinColumn( name = "idEvenement" ),
             inverseJoinColumns = @JoinColumn( name = "idArtiste" ) )
     private Set<Artiste> artistes = new HashSet<>();
 

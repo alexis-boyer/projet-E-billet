@@ -6,6 +6,8 @@ import fr.univtours.projet.entities.Ticket;
 import fr.univtours.projet.entities.Utilisateur;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class InitEbilletDatas {
 
@@ -17,6 +19,8 @@ public class InitEbilletDatas {
     // Artiste
     Artiste a1;
     Artiste a2;
+    Artiste adama = new Artiste("Yoba");
+    Artiste alexis = new Artiste("Alexis AKA KillerDu79");
 
     // Ticket
 
@@ -27,6 +31,8 @@ public class InitEbilletDatas {
 
 
     // Evenement
+    Evenement e1;
+    Evenement e2;
 
 
 
@@ -58,6 +64,20 @@ public class InitEbilletDatas {
         return utilisateurs;
     }
     protected ArrayList<Evenement> getEvenementsList(){
+        e1 = new Evenement(1000, "Paris", "Showcase", "30/07/2021", 125);
+        e2 = new Evenement(6, "Guingamp", "One Man Show", "01/04/2022", 0.50);
+
+        HashSet<Artiste> hs1 = new HashSet<Artiste>();
+        hs1.add(adama);
+        e1.setArtistes(hs1);
+
+        HashSet<Artiste> hs2 = new HashSet<>();
+        hs2.add(alexis);
+        hs2.add(adama);
+        e2.setArtistes(hs2);
+
+        evenements.add(e1);
+        evenements.add(e2);
         return evenements;
     }
 

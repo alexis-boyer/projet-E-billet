@@ -10,10 +10,10 @@ public class Ticket implements Serializable {
     @GeneratedValue
     private int idTiquet;
 
-    @ManyToOne (cascade=CascadeType.PERSIST)
+    @ManyToOne (cascade=CascadeType.ALL)
     @JoinColumn(name = "idEvenement")
     private Evenement evenement;
-    @ManyToOne (cascade=CascadeType.PERSIST)
+    @ManyToOne (cascade=CascadeType.ALL)
     @JoinColumn(name = "idUtilisateur")
     private Utilisateur utilisateur;
 
