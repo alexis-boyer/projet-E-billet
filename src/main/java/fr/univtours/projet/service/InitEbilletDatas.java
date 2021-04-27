@@ -56,8 +56,8 @@ public class InitEbilletDatas {
     }
     protected ArrayList<Utilisateur> getUtilisateursList(){
 
-        u1 = new Utilisateur("Alexis", "Boyer", "killerDu79", "pasouflemec","Client");
-        u2 = new Utilisateur("Zinedine", "Zidane", "Meilleur", "Joueur", "Admin");
+        u1 = new Utilisateur("Zinedine", "Zidane", "Meilleur", "Joueur", "Admin");
+        u2 = new Utilisateur("client", "client", "client", "client","Client");
         u3 = new Utilisateur("admin", "admin", "admin", "admin", "Admin");
 
         utilisateurs.add(u1);

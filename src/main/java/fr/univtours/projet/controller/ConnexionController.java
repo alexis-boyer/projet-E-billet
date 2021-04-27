@@ -43,14 +43,17 @@ public class ConnexionController {
 
         for (Utilisateur u : UtilisateurList) {
             if(u.getPseudo().equals(login) && u.getMotDePasse().equals(motDePasse)) {
-                List<Artiste> artisteList = artisteRep.findAll();
-                model.addAttribute("ArtisteList", artisteList);
 
-                List<Evenement> evenementList = evenementRep.findAll();
-                model.addAttribute("EventList", evenementList);
+                if(u.getRole().equals("Admin")) {
+                    List<Artiste> artisteList = artisteRep.findAll();
+                    model.addAttribute("ArtisteList", artisteList);
 
-                return "AjoutBillet";
+                    List<Evenement> evenementList = evenementRep.findAll();
+                    model.addAttribute("EventList", evenementList);
 
+                    return "AjoutBillet";
+                }
+                else return "rechercheBillet";
             }
         }
 

@@ -143,8 +143,9 @@
                 <div class="form-row">
                     <div class="col-5">
                         <select name="artistes" class="form-control" id="artistes" style="background-color: #f6f6f6;">
-                            <option value="exemple">artiste exemple1</option>
-                            <option value="exemple">artiste exemple2</option>
+                            <div th:each="artiste:${ArtisteList}">
+                                <option th:value="${artiste.nom}" th:text="${artiste.nom}"> </option>
+                            </div>
                         </select>
                     </div>
                     <div class="col">
@@ -152,8 +153,6 @@
                     </div>
                     <div class="col-5">
                         <ul id="artistes-display" class="">
-                            <li class="w3-text-grey">artiste 1 <p class="button suppr">X</p></li>
-                            <li class="w3-text-grey">artiste 2 <p class="button suppr">X</p></li>
                         </ul>
                     </div>
 
@@ -238,7 +237,7 @@
     });
 
     $('.add').click(function () {
-        $("#artistes-display").append('<li class="w3-text-grey">' + $("#artistes option:selected").text() + ' <p class="button suppr">X</p></li>');
+        $("#artistes-display").append('<li name="artiste" class="w3-text-grey">' + $("#artistes option:selected").text() + ' <p class="button suppr">X</p></li>');
         $('.suppr').click(function () {
             $(this).parent().remove();
             return false;

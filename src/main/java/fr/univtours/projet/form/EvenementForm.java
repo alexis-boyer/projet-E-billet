@@ -8,13 +8,13 @@ public class EvenementForm {
     public String emplacement;
     public String type;
     public String date;
-    public ArrayList<String> artistes;
+    public String artiste;
 
-    public EvenementForm(String emplacement, String type, String date, ArrayList<String> artistes) {
+    public EvenementForm(String emplacement, String type, String date, String artiste) {
         this.emplacement = emplacement;
         this.type = type;
         this.date = date;
-        this.artistes = artistes;
+        this.artiste = artiste;
     }
 
     public EvenementForm() {
@@ -52,11 +52,11 @@ public class EvenementForm {
         this.date = date;
     }
 
-    public ArrayList<String> getArtistes() {
-        return artistes;
+    public String getArtiste() {
+        return artiste;
     }
 
-    public void setArtistes(ArrayList<String> artistes) {
-        this.artistes = artistes;
+    public void setArtiste(String artiste) {
+        this.artiste = artiste;
     }
 }

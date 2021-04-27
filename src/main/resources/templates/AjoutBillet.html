@@ -164,16 +164,16 @@
 <div class="w3-row-padding w3-padding-64 w3-container">
     <div class="w3-content">
         <div class="w3-container">
-            <form>
+            <form th:action="@{/research}" th:object="${EvenementForm}" method="post">
                 <div class="form-row">
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="localisation">
+                        <input type="text" name="emplacement" class="form-control" placeholder="localisation">
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="type">
+                        <input type="text" name="type" class="form-control" placeholder="type">
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="date">
+                        <input type="text" name="date" class="form-control" placeholder="date">
                     </div>
                     <div class="col-2">
                         <input type="submit" class="fadeIn fourth" value="recherche">
@@ -230,7 +230,7 @@
     });
 
     $('.add').click(function () {
-        $("#artistes-display").append('<li class="w3-text-grey">' + $("#artistes option:selected").text() + ' <p class="button suppr">X</p></li>');
+        $("#artistes-display").append('<li name="artiste" class="w3-text-grey" th:text="' + $("#artistes option:selected").text() + '"> ' + $("#artistes option:selected").text() + ' <p class="button suppr">X</p></li>');
         $('.suppr').click(function () {
             $(this).parent().remove();
             return false;
