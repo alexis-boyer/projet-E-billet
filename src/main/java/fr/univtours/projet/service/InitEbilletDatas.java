@@ -68,7 +68,7 @@ public class InitEbilletDatas {
     }
     protected ArrayList<Evenement> getEvenementsList(){
         e1 = new Evenement(1000, "Paris", "Showcase", "30/07/2021", 125);
-        e2 = new Evenement(6, "Guingamp", "One Man Show", "01/04/2022", 0.50);
+        e2 = new Evenement(1, "Guingamp", "One Man Show", "01/04/2022", 0.50);
 
         HashSet<Artiste> hs1 = new HashSet<Artiste>();
         hs1.add(adama);

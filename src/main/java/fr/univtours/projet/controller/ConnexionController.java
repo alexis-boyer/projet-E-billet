@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -34,7 +36,7 @@ public class ConnexionController {
     }
 
     @RequestMapping(value = "/admin/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute(name = "loginForm") LoginForm loginForm, Model model) {
+    public String login(@ModelAttribute(name = "loginForm") LoginForm loginForm, Model model, HttpServletRequest request) {
 
         List<Utilisateur> UtilisateurList = utilisateurRep.findAll();
 
@@ -44,12 +46,17 @@ public class ConnexionController {
         for (Utilisateur u : UtilisateurList) {
             if(u.getPseudo().equals(login) && u.getMotDePasse().equals(motDePasse)) {
 
-                if(u.getRole().equals("Admin")) {
-                    List<Artiste> artisteList = artisteRep.findAll();
-                    model.addAttribute("ArtisteList", artisteList);
+                List<Artiste> artisteList = artisteRep.findAll();
+                model.addAttribute("ArtisteList", artisteList);
 
-                    List<Evenement> evenementList = evenementRep.findAll();
-                    model.addAttribute("EventList", evenementList);
+                List<Evenement> evenementList = evenementRep.findAll();
+                model.addAttribute("EventList", evenementList);
+
+                request.getSession().setAttribute("Utilisateur", u);
+
+                System.out.println(u.toString());
+
+                if(u.getRole().equals("Admin")) {
 
                     return "AjoutBillet";
                 }

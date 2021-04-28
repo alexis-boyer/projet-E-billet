@@ -88,4 +88,16 @@ public class Utilisateur implements Serializable {
     public void setTiquets(Set<Ticket> tickets) {
         this.tickets = tickets;
     }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "prenom='" + prenom + '\'' +
+                ", nom='" + nom + '\'' +
+                ", pseudo='" + pseudo + '\'' +
+                ", motDePasse='" + motDePasse + '\'' +
+                ", role='" + role + '\'' +
+                ", tickets=" + tickets +
+                '}';
+    }
 }

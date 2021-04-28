@@ -4,6 +4,8 @@ import fr.univtours.projet.dao.ArtisteJpaRepository;
 import fr.univtours.projet.dao.EvenementJpaRepository;
 import fr.univtours.projet.entities.Artiste;
 import fr.univtours.projet.entities.Evenement;
+import fr.univtours.projet.entities.Ticket;
+import fr.univtours.projet.entities.Utilisateur;
 import fr.univtours.projet.form.EvenementForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class Billetcontroller {
@@ -24,6 +28,8 @@ public class Billetcontroller {
 
     @Autowired
     ArtisteJpaRepository artisteRep;
+
+    ArrayList<Evenement> billetAchete = new ArrayList<>();
 
     @RequestMapping(value = "/admin/billet")
     public String index(Model model) {
@@ -89,8 +95,13 @@ public class Billetcontroller {
     public String supprEvenement(@RequestParam int ref, Model model) {
         // todo : verifier pourquoi supprimer un element en supprime deux ?
 //        System.out.println(evenementRep.findById(ref) + "    " + ref);
-        evenementRep.deleteById(ref);
+        Evenement evenement = evenementRep.findById(ref).get();
+        evenementRep.delete(evenement);
         model.addAttribute("EventList", evenementRep.findAll());
+        model.addAttribute("ArtisteList", artisteRep.findAll());
+
+
+
         return "AjoutBillet";
 
     }
@@ -110,6 +121,38 @@ public class Billetcontroller {
 // TODO: 27/04/2021 rechercher dans la liste d'event ceux avec le parametre type
         }
 
+        return "rechercheBillet";
+    }
+
+
+    @RequestMapping("/client/buy")
+    public String acheterBilletEvenemenet(@RequestParam int ref, Model model, HttpServletRequest request) {
+
+        Evenement evenement = evenementRep.findById(ref).get();
+
+        if (evenement.getPlaces() > 0) {
+            evenement.setPlaces(evenement.getPlaces() - 1);
+            evenementRep.save(evenement);
+
+            billetAchete.add(evenement);
+
+            Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("Utilisateur");
+
+            Set<Ticket> hs = utilisateur.getTiquets();
+            Ticket ticket = new Ticket(evenement,utilisateur);
+            hs.add(ticket);
+            utilisateur.setTiquets(hs);
+            System.out.println(utilisateur.toString());
+
+
+            model.addAttribute("Message", "Votre billet a bien été acheté.");
+        } else {
+            model.addAttribute("Message", "Une erreur est survenue.");
+        }
+
+
+        model.addAttribute("EventList", evenementRep.findAll());
+        model.addAttribute("BilletAchete", billetAchete);
         return "rechercheBillet";
     }
 
